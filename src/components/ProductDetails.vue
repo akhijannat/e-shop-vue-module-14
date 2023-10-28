@@ -2,6 +2,7 @@
 import { ref, onMounted, reactive } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
+import AddToCart from "../components/AddToCart.vue";
 
 const productId = useRoute().params.id;
 const product = reactive({});
@@ -70,12 +71,7 @@ onMounted(() => {
         </p>
 
         <div class="flex py-4 space-x-4">
-          <button
-            type="button"
-            class="px-6 py-2 font-semibold rounded bg-gray-600 hover:bg-gray-500 text-white"
-          >
-            Add to Cart
-          </button>
+          <AddToCart :product="product" />
         </div>
       </div>
     </div>
