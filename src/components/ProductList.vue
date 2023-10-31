@@ -70,7 +70,7 @@ function addToCart(product) {
           v-for="product in products"
           :key="product.id"
         >
-          <img :src="product.thumbnail" class="h-56 w-auto mx-auto" alt="" />
+          <img :src="product.thumbnail" class="h-44 w-auto mx-auto" alt="" />
           <div class="p-5">
             <span class="text-gray-800 text-lg font-bold">{{
               product.title
