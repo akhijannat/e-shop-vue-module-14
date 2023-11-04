@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 
 const mobileMenuOpen = ref(false);
 const navLink = "ease-in duration-200 text-[17px] hover:text-gray-400";
 
-import { useCart } from "../stores/Cart";
+import { useCart } from "../stores/Cart.js";
 
 import { storeToRefs } from "pinia";
 import ShoppingCart from "../components/ShoppingCart.vue";
@@ -22,6 +22,8 @@ import router from "../router";
 import { useAuth } from "../stores/auth.js";
 
 import { ElMessage, ElNotification } from "element-plus";
+import { useProduct } from "../stores/product";
+import { useCategory } from "../stores/category";
 
 const auth = useAuth();
 
@@ -45,10 +47,30 @@ function logOut() {
   }
 }
 
+const inputName = ref("");
+
+const pro = useProduct();
+const { products } = storeToRefs(pro);
+
+function productFind() {
+  pro.getData(inputName.value);
+}
+
+const cat = useCategory();
+const { categories } = storeToRefs(cat);
+
+onMounted(() => {
+  cat.getData();
+});
+
 const showCart = ref(false);
 
 function toggleCart() {
   showCart.value = !showCart.value;
+}
+
+function CategoryProductFind(event) {
+  pro.getCatData(event.target.value);
 }
 </script>
 <template>
@@ -100,30 +122,32 @@ function toggleCart() {
           :class="mobileMenuOpen ? 'flex' : 'hidden'"
           class="flex-col md:flex md:flex-row md:space-x-3 lg:space-x-6 lg:text-xl font-bold md:items-center"
         >
-          <!-- <RouterLink to="/" :class="navLink">Home</RouterLink>
-          <RouterLink to="/store" :class="navLink">Store</RouterLink>
-          <RouterLink to="/about" :class="navLink">About Us</RouterLink>
-          <RouterLink to="/contact" :class="navLink">Contact Us</RouterLink> -->
           <div class="">
             <form
               class="flex flex-col md:flex-row text-sm text-gray-400 font-normal"
             >
               <select
+                @change="CategoryProductFind($event)"
                 id="pricingType"
-                name="pricingType"
                 class="w-full border border-gray-300 border-r-0 focus:outline-none pl-3 pr-5 py-2 tracking-wider cursor-pointer"
               >
-                <option value="All" selected="">All categorys</option>
-                <option value="Freemium">Freemium</option>
-                <option value="Free">Free</option>
-                <option value="Paid">Paid</option>
+                <option value="" selected disabled>All category</option>
+                <option
+                  v-for="category in categories"
+                  :key="category.id"
+                  :value="category"
+                >
+                  {{ category }}
+                </option>
               </select>
 
               <div class="flex border border-gray-300">
                 <input
+                  v-on:input="productFind"
+                  v-model="inputName"
                   type="text"
                   placeholder="Search for the tool you like"
-                  class="w-full md:w-80 px-3 focus:outline-none italic"
+                  class="w-full md:w-80 px-2 md:px-3 focus:outline-none italic"
                 />
                 <button type="submit" class="px-3 py-2">
                   <svg

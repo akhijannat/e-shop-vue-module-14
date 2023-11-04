@@ -154,7 +154,7 @@ const open = ref(true);
                                     <button
                                       type="button"
                                       @click.prevent="deleteCartItem(cart)"
-                                      class="font-medium text-gray-600 hover:text-gray-500"
+                                      class="font-medium text-indigo-600 hover:text-indigo-500"
                                     >
                                       Remove
                                     </button>
@@ -180,7 +180,7 @@ const open = ref(true);
                       <div class="mt-6">
                         <RouterLink
                           :to="{ name: 'checkout' }"
-                          class="flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-700"
+                          class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                           Checkout</RouterLink
                         >
@@ -192,8 +192,8 @@ const open = ref(true);
                           or
                           <button
                             type="button"
-                            class="font-medium text-gray-600 hover:text-gray-500"
-                            @click="open = true"
+                            class="font-medium text-indigo-600 hover:text-indigo-500"
+                            @click="open = false"
                           >
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>

@@ -2,7 +2,8 @@
 import ProductList from "../components/ProductList.vue";
 import { useProduct } from "../stores/product";
 import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
+
 const pro = useProduct();
 const { products } = storeToRefs(pro);
 

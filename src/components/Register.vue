@@ -66,12 +66,12 @@ function validatePassword(confirmPassword) {
 </script>
 
 <template>
-  <section class="bg-gray-200" id="app">
+  <section class="bg-[#00DCBD]" id="app">
     <!-- Show login and registration forms if the user is not logged in -->
     <div class="container h-screen flex justify-center items-center">
       <div class="flex flex-col justify-center items-center">
         <form
-          class="bg-gray-100 shadow-xl rounded px-8 pt-6 pb-8 mb-4"
+          class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           @submit.prevent="submitRegisterFrom"
         >
           <div class="mb-4 w-80">
@@ -132,14 +132,14 @@ function validatePassword(confirmPassword) {
           <div class="flex items-center justify-between">
             <button
               v-if="msg ? '' : 'disabled'"
-              class="bg-gray-600 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              class="bg-[#00DCBD] hover:bg-[#00DCBD] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Register
             </button>
             <RouterLink
               :to="{ name: 'login' }"
-              class="inline-block align-baseline font-bold text-sm text-gray-900 hover:text-gray-700"
+              class="inline-block align-baseline font-bold text-sm text-[#00DCBD] hover:text-[#00DCBD]"
             >
               Back to Login
             </RouterLink>
